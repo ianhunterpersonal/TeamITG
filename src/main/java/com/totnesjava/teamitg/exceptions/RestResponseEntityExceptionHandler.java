@@ -14,9 +14,9 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
 	
-	@ExceptionHandler(PersonNotAuthenticatedException.class)
+	@ExceptionHandler(UserNotAuthenticatedException.class)
 	@ResponseStatus(HttpStatus.NOT_FOUND)
-	public ResponseEntity<ErrorResponse> handlePersonNotFoundException(PersonNotAuthenticatedException exception, WebRequest request) {
+	public ResponseEntity<ErrorResponse> handlePersonNotFoundException(UserNotAuthenticatedException exception, WebRequest request) {
 		log.error("Cannot authenticate user", exception);
 		return buildErrorResponse(exception, "Cannot authenticate user", HttpStatus.UNAUTHORIZED, request);
 	}

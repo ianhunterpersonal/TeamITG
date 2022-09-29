@@ -1,4 +1,0 @@
-ALTER TABLE PERSONS
-ADD password VARCHAR(255);
-
-
