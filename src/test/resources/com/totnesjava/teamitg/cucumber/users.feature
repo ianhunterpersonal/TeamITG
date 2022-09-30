@@ -35,8 +35,7 @@ Feature: User Admin and Logging in/out
 		When I delete user with email 'ian@email.com'
 		Then I have 0 users
 
-	Scenario: List some users 		Then I get users
-	
+	Scenario: List some users
 	
 		Given I create users
 			| id    | name         | email           | password  |

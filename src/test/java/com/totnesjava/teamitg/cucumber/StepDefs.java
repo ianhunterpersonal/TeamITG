@@ -51,9 +51,10 @@ public class StepDefs extends AbstractSteps {
 		});
 	}
 
+	@SuppressWarnings("unchecked")
 	@When("I list all users")
 	public void i_list_all_users() {
-		lastFetchedUsers = userRepository.findAll().stream().map(e -> UserMapper.INSTANCE.map(e)).collect(Collectors.toList());
+		lastFetchedUsers = super.callRestGet("/v1/users", List.class);
 	}
 
 	@Then("I get users")
