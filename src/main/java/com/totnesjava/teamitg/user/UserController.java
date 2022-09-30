@@ -63,6 +63,7 @@ public class UserController {
 	@ResponseStatus(HttpStatus.CREATED)
 	@ResponseBody
 	public ResponseEntity<UserResource> add(@RequestBody UserResource personResource) {
+		log.info("Create user: " + personResource);
 		UserResource toReturn = service.save(UserMapper.INSTANCE.map(personResource));
 		return ResponseEntity.created(URI.create("")).body(toReturn);
 	}
@@ -77,6 +78,7 @@ public class UserController {
 	})
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> deleteById(@PathVariable String id) {
+		log.info("Delete user with ID : " + id);
 		try {
 			service.deleteById(id);
 			return ResponseEntity.ok().build();

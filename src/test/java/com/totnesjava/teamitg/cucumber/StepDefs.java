@@ -9,23 +9,26 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 
 import com.totnesjava.teamitg.user.UserEntity;
-import com.totnesjava.teamitg.user.UserMapper;
 import com.totnesjava.teamitg.user.UserRepository;
 import com.totnesjava.teamitg.user.UserResource;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class StepDefs extends AbstractSteps {
 
 	@Given("I clear the {string} database")
 	public void i_clear_the_database(String tableName) {
 		userRepository.deleteAll();
+		Assertions.assertEquals(0, userRepository.count());
 	}
 
 	@Given("I have {long} users")
 	public void i_have_users(Long userCount) {
+		log.info("user repo now contains " + userRepository.count() + " users");
 		Assertions.assertEquals(userCount, userRepository.count(), "Wrong number of users in database");
 	}
 
@@ -63,7 +66,6 @@ public class StepDefs extends AbstractSteps {
 		if (lastFetchedUsers != null) {
 			Assertions.assertEquals(sortResources(expectedUsers), sortResources(expectedUsers));
 		}
-		;
 	}
 
 	private List<UserResource> sortResources(List<UserResource> input) {

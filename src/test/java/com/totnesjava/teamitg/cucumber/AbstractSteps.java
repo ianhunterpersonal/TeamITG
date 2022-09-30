@@ -26,6 +26,10 @@ public class AbstractSteps extends CucumberBootstrap {
 		return response.getBody();
 	}
 
+	protected void callRestDelete(String uri) {
+		super.testRestTemplate.delete(baseUrl() + uri);
+	}
+
 	/**
 	 * In the case of a 401(Unauthorised) it seems that RestTemplate attempts a
 	 * retry. Not desirable in a test, so disable it.

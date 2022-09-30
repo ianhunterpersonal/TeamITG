@@ -1,5 +1,6 @@
 package com.totnesjava.teamitg.user;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -36,6 +37,7 @@ public class UserEntity {
 
 	private String				password;
 
+	@Column(name = "login_token")
 	private String				loginToken;
 
 }

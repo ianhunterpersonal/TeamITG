@@ -11,7 +11,6 @@ Feature: User Admin and Logging in/out
 		Given I clear the 'users' database
 		And I have 0 users
 		
-  ##@tag1
   Scenario: Create a new user
   
     Given I have 0 users
