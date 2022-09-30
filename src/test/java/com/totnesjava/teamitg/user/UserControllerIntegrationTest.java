@@ -239,12 +239,12 @@ public class UserControllerIntegrationTest {
 
 	}
 
-	private UserResource performPutAndGet(String id, UserResource updatedPerson) {
-		final String resourceUrl = baseUrl + "/" + id;
-		restTemplate.put(resourceUrl, updatedPerson, UserResource.class);
-		UserResource fromServer = restTemplate.getForObject(resourceUrl, UserResource.class);
-		return fromServer;
-	}
+//	private UserResource performPutAndGet(String id, UserResource updatedPerson) {
+//		final String resourceUrl = baseUrl + "/" + id;
+//		restTemplate.put(resourceUrl, updatedPerson, UserResource.class);
+//		UserResource fromServer = restTemplate.getForObject(resourceUrl, UserResource.class);
+//		return fromServer;
+//	}
 
 	@Autowired
 	private UserRepository	userRepository;

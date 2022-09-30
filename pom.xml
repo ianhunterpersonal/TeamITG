@@ -131,11 +131,11 @@
 		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
-		<dependency>
+<!-- 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-java</artifactId>
 		</dependency>
-
+ -->
 		<!-- https://mvnrepository.com/artifact/org.testcontainers/testcontainers -->
 		<dependency>
 			<groupId>org.testcontainers</groupId>
@@ -145,13 +145,13 @@
 		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/org.testcontainers/selenium -->
-		<dependency>
+<!-- 		<dependency>
 			<groupId>org.testcontainers</groupId>
 			<artifactId>selenium</artifactId>
 			<version>1.17.3</version>
 			<scope>test</scope>
 		</dependency>
-
+ -->
 		<dependency>
 			<groupId>org.testcontainers</groupId>
 			<artifactId>postgresql</artifactId>
@@ -174,15 +174,6 @@
 							<artifactId>lombok</artifactId>
 						</exclude>
 					</excludes>
-				</configuration>
-			</plugin>
-
-			<plugin>
-				<groupId>com.heroku.sdk</groupId>
-				<artifactId>heroku-maven-plugin</artifactId>
-				<version>3.0.4</version>
-				<configuration>
-					<appName>enigmatic-cliffs-76119</appName>
 				</configuration>
 			</plugin>
 
