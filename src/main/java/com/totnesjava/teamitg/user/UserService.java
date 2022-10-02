@@ -38,19 +38,14 @@ public class UserService {
 		return repository.findAll().stream().map(e -> UserMapper.INSTANCE.map(e)).collect(Collectors.toList());
 	}
 
-
-	/*
-	
-	public void replaceById(String id, UserResource User) {
-		if (repository.existsById(id)) {
-			User.setId(id);
-			repository.save(UserMapper.INSTANCE.map(User));
-		} else {
-			throw new EntityNotFoundException(id);
+	public UserResource login(UserCredentialsResource credentialsResource) {
+		UserEntity userEntity = repository.findByEmailAndPassword(credentialsResource.getEmail(), credentialsResource.getPassword());
+		if (userEntity == null) {
+			throw new EntityNotFoundException("User not found ID =" + credentialsResource.getEmail());
 		}
+		return UserMapper.INSTANCE.map(userEntity);
 	}
-	*/
-	
+
 	@Autowired
 	private UserRepository repository; // Autowired via constructor
 

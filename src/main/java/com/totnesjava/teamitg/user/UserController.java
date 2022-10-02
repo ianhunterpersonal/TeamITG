@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -34,9 +35,11 @@ import lombok.extern.slf4j.Slf4j;
 })
 @AllArgsConstructor
 @RestController
+@CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
 @RequestMapping("/v1/users")
 public class UserController {
 
+	///////////////////////////////////////////////////////////////////////////////////
 	@Operation(summary = "Recovers Users from the database using optional filters as arguments")
 	@ApiResponses(value = {
 			@ApiResponse(
@@ -52,7 +55,10 @@ public class UserController {
 		List<UserResource> allPersons = service.findAll().stream().filter(pe -> ((email == null) || pe.getEmail().equals(email))).collect(Collectors.toList());
 		return ResponseEntity.ok(allPersons);
 	}
+	///////////////////////////////////////////////////////////////////////////////////
 
+	
+	///////////////////////////////////////////////////////////////////////////////////
 	@Operation(summary = "Create a new user with given attributes.")
 	@ApiResponses(value = {
 			@ApiResponse(
@@ -67,7 +73,28 @@ public class UserController {
 		UserResource toReturn = service.save(UserMapper.INSTANCE.map(personResource));
 		return ResponseEntity.created(URI.create("")).body(toReturn);
 	}
+	///////////////////////////////////////////////////////////////////////////////////
 
+	
+	///////////////////////////////////////////////////////////////////////////////////
+	@Operation(summary = "Login a user with email and password.")
+	@ApiResponses(value = {
+			@ApiResponse(
+					responseCode = "200", description = "Person logged in", content = @Content(mediaType = "application/json", schema = @Schema(implementation = UserResource.class))
+			)
+	})
+	@PostMapping("/login")
+	@ResponseStatus(HttpStatus.CREATED)
+	@ResponseBody
+	public ResponseEntity<UserResource> login(@RequestBody UserCredentialsResource credentialsResource) {
+		log.info("Login user: " + credentialsResource.getEmail());
+		UserResource toReturn = service.login(credentialsResource);
+		return ResponseEntity.created(URI.create("")).body(toReturn);
+	}
+	///////////////////////////////////////////////////////////////////////////////////
+
+	
+	///////////////////////////////////////////////////////////////////////////////////
 	@Operation(summary = "Deletes person with given ID")
 	@ApiResponses(value = {
 			@ApiResponse(
@@ -86,6 +113,7 @@ public class UserController {
 			return ResponseEntity.notFound().build();
 		}
 	}
+	///////////////////////////////////////////////////////////////////////////////////
 
 	private UserService service;
 
