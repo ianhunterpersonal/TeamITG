@@ -11,11 +11,9 @@ function App() {
     <BrowserRouter>
     <Routes>
       <Route path="/" element={<Home />}>
-        <Route path="users" element={<Users />}>
-          <Route index element={<main style={{ padding: '1rem' }}><p>Select a User</p></main>}/>
-          <Route path=":userId" element={<User />} />
-        </Route>
-        <Route path="*"element={<main style={{ padding: '1rem' }}><p>There's nothing here!</p></main>}/>
+        <Route path="users" element={<Users />}/>
+        <Route path="users/:userId" element={<User />} />
+        <Route path="*" element={<main style={{ padding: '1rem' }}><p>There are no users in the system.</p></main>}/>
       </Route>
     </Routes>
   </BrowserRouter>
