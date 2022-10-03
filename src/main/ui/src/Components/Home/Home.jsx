@@ -12,7 +12,7 @@ export default function Home() {
           paddingBottom: '1rem',
         }}
       >
-        <Link to="/users">All Users</Link> | {' '}
+        <Link to="/users">New User</Link> | {' '}
       </nav>
       <Outlet />
     </div>
